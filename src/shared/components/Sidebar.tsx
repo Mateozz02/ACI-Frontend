@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "@/shared/hooks/useAuth";
 
 type SidebarProps = {
   slug: string;
@@ -37,16 +38,33 @@ const icons = {
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   ),
+  logout: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+      <polyline points="16 17 21 12 16 7" />
+      <line x1="21" y1="12" x2="9" y2="12" />
+    </svg>
+  ),
+  test: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="M9 9h6" />
+      <path d="M9 13h4" />
+    </svg>
+  ),
 };
 
 export function Sidebar({ slug, storeName }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuth();
   const [open, setOpen] = useState(false);
 
   const base = `/stores/${slug}`;
   const navItems = [
     { href: `${base}/orders`, label: "Pedidos", icon: icons.orders },
     { href: `${base}/products`, label: "Productos", icon: icons.products },
+    { href: `${base}/test`, label: "Test", icon: icons.test },
     { href: `${base}/settings`, label: "Configuración", icon: icons.settings },
   ];
 
@@ -55,6 +73,12 @@ export function Sidebar({ slug, storeName }: SidebarProps) {
       return pathname === href || pathname.startsWith(`${base}/orders/`);
     }
     return pathname === href;
+  };
+
+  const handleLogout = () => {
+    logout();
+    setOpen(false);
+    router.push("/login");
   };
 
   return (
@@ -141,6 +165,13 @@ export function Sidebar({ slug, storeName }: SidebarProps) {
               <span className="text-yellow-600/70">{icons.stores}</span>
               Todas las tiendas
             </Link>
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-red-600/80 hover:bg-red-50 hover:text-red-700 transition-colors mt-1"
+            >
+              <span className="text-red-500/70">{icons.logout}</span>
+              Cerrar sesión
+            </button>
           </div>
         </div>
       </aside>
