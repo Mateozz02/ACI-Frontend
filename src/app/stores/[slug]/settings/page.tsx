@@ -5,10 +5,14 @@ import { useParams } from "next/navigation";
 import type { Store } from "@/features/stores/types";
 import { getStoreBySlug } from "@/features/stores/api";
 import { StoreSettingsForm } from "@/features/stores/components/StoreSettingsForm";
+import { WhatsAppConnection } from "@/features/whatsapp/components/WhatsAppConnection";
+
+type Tab = "general" | "whatsapp";
 
 export default function SettingsPage() {
   const params = useParams<{ slug: string }>();
   const [store, setStore] = useState<Store | null>(null);
+  const [tab, setTab] = useState<Tab>("general");
 
   useEffect(() => {
     getStoreBySlug(params.slug).then(setStore);
@@ -22,8 +26,33 @@ export default function SettingsPage() {
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold tracking-tight mb-6">Configuración</h1>
 
+      <div className="flex gap-1 mb-4 border-b border-yellow-200">
+        <button onClick={() => setTab("general")}
+          className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+            tab === "general"
+              ? "bg-white border border-b-white -mb-px text-yellow-950"
+              : "text-yellow-700/60 hover:text-yellow-950"
+          }`}>
+          General
+        </button>
+        <button onClick={() => setTab("whatsapp")}
+          className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+            tab === "whatsapp"
+              ? "bg-white border border-b-white -mb-px text-yellow-950"
+              : "text-yellow-700/60 hover:text-yellow-950"
+          }`}>
+          WhatsApp
+        </button>
+      </div>
+
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <StoreSettingsForm store={store} onSaved={() => getStoreBySlug(params.slug).then(setStore)} />
+        {tab === "general" ? (
+          <StoreSettingsForm store={store} onSaved={() => getStoreBySlug(params.slug).then(setStore)} />
+        ) : (
+          <div className="p-5">
+            <WhatsAppConnection storeId={store.id} hasSession={!!store.openwa_session_name} />
+          </div>
+        )}
       </div>
     </div>
   );
