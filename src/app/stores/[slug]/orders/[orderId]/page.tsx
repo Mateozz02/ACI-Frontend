@@ -10,11 +10,11 @@ export default function OrderDetailPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-6">
-        <Link href={`/stores/${params.slug}/orders`} className="text-sm text-yellow-700/70 hover:text-yellow-950 transition-colors">
+        <Link href={`/stores/${params.slug}/orders`} className="text-sm text-paper-700/70 hover:text-paper-950 transition-colors">
           ← Volver a pedidos
         </Link>
       </div>
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl border border-paper-200 overflow-hidden">
         <OrderDetail />
       </div>
     </div>

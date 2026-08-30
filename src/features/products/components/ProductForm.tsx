@@ -49,48 +49,48 @@ export function ProductForm({ storeId, product, onDone }: Props) {
     <form onSubmit={handleSubmit} className="p-5 space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <label className="block">
-          <span className="text-xs font-medium text-yellow-800/70">Nombre *</span>
+          <span className="text-xs font-medium text-paper-800/70">Nombre *</span>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 w-full px-3 py-1.5 text-sm border border-yellow-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-yellow-400 bg-white"
+            className="mt-1 w-full px-3 py-1.5 text-sm border border-paper-200 rounded-md focus:outline-none focus:ring-2 focus:ring-paper-200 focus:border-signal-400 bg-white"
             required
           />
         </label>
 
         <label className="block">
-          <span className="text-xs font-medium text-yellow-800/70">Unidad *</span>
+          <span className="text-xs font-medium text-paper-800/70">Unidad *</span>
           <input
             type="text"
             value={unit}
             placeholder="kg, unidad, paquete..."
             onChange={(e) => setUnit(e.target.value)}
-            className="mt-1 w-full px-3 py-1.5 text-sm border border-yellow-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-yellow-400 bg-white"
+            className="mt-1 w-full px-3 py-1.5 text-sm border border-paper-200 rounded-md focus:outline-none focus:ring-2 focus:ring-paper-200 focus:border-signal-400 bg-white"
             required
           />
         </label>
 
         <label className="block">
-          <span className="text-xs font-medium text-yellow-800/70">Precio *</span>
+          <span className="text-xs font-medium text-paper-800/70">Precio *</span>
           <input
             type="number"
             min="0"
             step="0.01"
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
-            className="mt-1 w-full px-3 py-1.5 text-sm border border-yellow-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-yellow-400 bg-white"
+            className="mt-1 w-full px-3 py-1.5 text-sm border border-paper-200 rounded-md focus:outline-none focus:ring-2 focus:ring-paper-200 focus:border-signal-400 bg-white"
             required
           />
         </label>
 
         <label className="block">
-          <span className="text-xs font-medium text-yellow-800/70">Categoria</span>
+          <span className="text-xs font-medium text-paper-800/70">Categoria</span>
           <input
             type="text"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="mt-1 w-full px-3 py-1.5 text-sm border border-yellow-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-yellow-400 bg-white"
+            className="mt-1 w-full px-3 py-1.5 text-sm border border-paper-200 rounded-md focus:outline-none focus:ring-2 focus:ring-paper-200 focus:border-signal-400 bg-white"
           />
         </label>
       </div>
@@ -100,23 +100,23 @@ export function ProductForm({ storeId, product, onDone }: Props) {
           type="checkbox"
           checked={isAvailable}
           onChange={(e) => setIsAvailable(e.target.checked)}
-          className="rounded border-yellow-300 text-yellow-500 focus:ring-yellow-400"
+          className="rounded border-paper-300 text-signal-500 focus:ring-signal-400"
         />
-        <span className="text-sm text-yellow-800">Disponible</span>
+        <span className="text-sm text-paper-800">Disponible</span>
       </label>
 
       <div className="flex justify-end gap-2 pt-2">
         <button
           type="button"
           onClick={onDone}
-          className="px-4 py-1.5 text-sm text-yellow-700/60 hover:text-yellow-800"
+          className="px-4 py-1.5 text-sm text-paper-700/60 hover:text-paper-800"
         >
           Cancelar
         </button>
         <button
           type="submit"
           disabled={saving}
-          className="px-4 py-1.5 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-md hover:bg-yellow-500 disabled:opacity-50"
+          className="px-4 py-1.5 text-sm font-medium text-paper-950 bg-signal-400 rounded-md hover:bg-signal-500 disabled:opacity-50"
         >
           {saving ? "Guardando..." : product ? "Guardar" : "Crear producto"}
         </button>

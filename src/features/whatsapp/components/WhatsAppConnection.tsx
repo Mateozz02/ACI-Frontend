@@ -170,9 +170,9 @@ export function WhatsAppConnection({ storeId, hasSession }: { storeId: string; h
     return (
       <div className="text-center py-8">
         {error && <p className="text-red-600 text-sm mb-3">{error}</p>}
-        <p className="text-yellow-700/60 mb-4">No hay WhatsApp configurado para esta tienda</p>
+        <p className="text-paper-700/60 mb-4">No hay WhatsApp configurado para esta tienda</p>
         <button onClick={sessionExists ? handleReplace : handleConnect} disabled={loading}
-          className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-lg hover:bg-yellow-500 disabled:opacity-50">
+          className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-lg hover:bg-signal-500 disabled:opacity-50">
           {loading ? (sessionExists ? "Reemplazando..." : "Creando...") : (sessionExists ? "Reemplazar sesion" : "Conectar WhatsApp")}
         </button>
       </div>
@@ -206,12 +206,12 @@ export function WhatsAppConnection({ storeId, hasSession }: { storeId: string; h
         <p className="text-red-600 text-sm mb-3">{error}</p>
         {sessionExists ? (
           <button onClick={handleReplace} disabled={loading}
-            className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-lg hover:bg-yellow-500">
+            className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-lg hover:bg-signal-500">
             {loading ? "Reemplazando..." : "Reemplazar sesion"}
           </button>
         ) : (
           <button onClick={handleConnect} disabled={loading}
-            className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-lg hover:bg-yellow-500">
+            className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-lg hover:bg-signal-500">
             Reintentar
           </button>
         )}
@@ -222,9 +222,9 @@ export function WhatsAppConnection({ storeId, hasSession }: { storeId: string; h
   if (status === "created") {
     return (
       <div className="text-center py-8">
-        <p className="text-yellow-700/60 mb-4">La sesion fue creada pero no se pudo iniciar</p>
+        <p className="text-paper-700/60 mb-4">La sesion fue creada pero no se pudo iniciar</p>
         <button onClick={handleConnect} disabled={loading}
-          className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-lg hover:bg-yellow-500 disabled:opacity-50">
+          className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-lg hover:bg-signal-500 disabled:opacity-50">
           {loading ? "Iniciando..." : "Iniciar sesion"}
         </button>
       </div>
@@ -234,9 +234,9 @@ export function WhatsAppConnection({ storeId, hasSession }: { storeId: string; h
   if (status === "disconnected") {
     return (
       <div className="text-center py-8">
-        <p className="text-yellow-700/60 mb-4">La sesion de WhatsApp se desconecto</p>
+        <p className="text-paper-700/60 mb-4">La sesion de WhatsApp se desconecto</p>
         <button onClick={handleConnect} disabled={loading}
-          className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-lg hover:bg-yellow-500 disabled:opacity-50">
+          className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-lg hover:bg-signal-500 disabled:opacity-50">
           {loading ? "Reconectando..." : "Reconectar WhatsApp"}
         </button>
       </div>
@@ -246,14 +246,14 @@ export function WhatsAppConnection({ storeId, hasSession }: { storeId: string; h
   if (status === "deleted") {
     return (
       <div className="text-center py-8">
-        <p className="text-yellow-700/60 mb-4">La sesion de WhatsApp expiro o fue eliminada</p>
+        <p className="text-paper-700/60 mb-4">La sesion de WhatsApp expiro o fue eliminada</p>
         <button onClick={handleConnect} disabled={loading}
-          className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-lg hover:bg-yellow-500 disabled:opacity-50">
+          className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-lg hover:bg-signal-500 disabled:opacity-50">
           {loading ? "Creando..." : "Conectar WhatsApp"}
         </button>
       </div>
     );
   }
 
-  return <p className="text-center text-yellow-700/60 py-4">Cargando...</p>;
+  return <p className="text-center text-paper-700/60 py-4">Cargando...</p>;
 }

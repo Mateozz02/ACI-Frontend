@@ -39,19 +39,19 @@ export function ChatPanel() {
   }, [loadConversations]);
 
   return (
-    <div className="w-full md:w-72 bg-yellow-50/50 border-r border-yellow-100 flex flex-col h-full">
-      <div className="p-4 border-b border-yellow-100">
-        <h3 className="font-semibold text-yellow-950">Conversaciones</h3>
-        <p className="text-xs text-yellow-700/60 mt-1">
+    <div className="w-full md:w-72 bg-paper-50/50 border-r border-paper-100 flex flex-col h-full">
+      <div className="p-4 border-b border-paper-100">
+        <h3 className="font-semibold text-paper-950">Conversaciones</h3>
+        <p className="text-xs text-paper-700/60 mt-1">
           {conversations.length} activas
         </p>
       </div>
 
       <div className="flex-1 overflow-y-auto">
         {loading ? (
-          <p className="text-center text-yellow-700/50 py-8 text-sm">Cargando...</p>
+          <p className="text-center text-paper-700/50 py-8 text-sm">Cargando...</p>
         ) : conversations.length === 0 ? (
-          <p className="text-center text-yellow-700/50 py-8 text-sm">
+          <p className="text-center text-paper-700/50 py-8 text-sm">
             Sin conversaciones aún
           </p>
         ) : (
@@ -59,19 +59,19 @@ export function ChatPanel() {
             <button
               key={c.phone}
               onClick={() => router.push(`/stores/${params.slug}/chats/${encodeURIComponent(c.phone)}`)}
-              className={`w-full text-left px-4 py-3 border-b border-yellow-50 hover:bg-yellow-100/50 transition-colors ${
-                activePhone === c.phone ? "bg-yellow-100" : ""
+              className={`w-full text-left px-4 py-3 border-b border-paper-50 hover:bg-paper-100/50 transition-colors ${
+                activePhone === c.phone ? "bg-paper-100" : ""
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-yellow-950 truncate max-w-[140px]">
+                <span className="text-sm font-medium text-paper-950 truncate max-w-[140px]">
                   {c.phone}
                 </span>
-                <span className="text-xs text-yellow-700/40">
+                <span className="text-xs text-paper-700/40">
                   {new Date(c.last_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                 </span>
               </div>
-              <p className="text-xs text-yellow-700/60 truncate mt-0.5">
+              <p className="text-xs text-paper-700/60 truncate mt-0.5">
                 {c.last_role === "assistant" && "🤖 "}
                 {c.last_role === "store" && "🏪 "}
                 {c.last_message?.slice(0, 40)}

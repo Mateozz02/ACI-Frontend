@@ -47,14 +47,14 @@ export function ChatThread({ storeId, phone }: { storeId: string; phone: string 
   return (
     <div className="flex-1 flex flex-col h-full min-h-0 bg-white">
       {/* Header */}
-      <div className="px-4 py-3 border-b border-yellow-100 bg-yellow-50/30">
-        <span className="text-sm font-medium text-yellow-950">{phone}</span>
+      <div className="px-4 py-3 border-b border-paper-100 bg-paper-50/30">
+        <span className="text-sm font-medium text-paper-950">{phone}</span>
       </div>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {messages.length === 0 && (
-          <p className="text-center text-yellow-700/40 py-10 text-sm">
+          <p className="text-center text-paper-700/40 py-10 text-sm">
             Sin mensajes aún
           </p>
         )}
@@ -67,14 +67,14 @@ export function ChatThread({ storeId, phone }: { storeId: string; phone: string 
             <div
               className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm ${
                 msg.role === "user"
-                  ? "bg-yellow-400 text-yellow-950 rounded-br-md"
+                  ? "bg-signal-400 text-paper-950 rounded-br-md"
                   : msg.role === "store"
-                  ? "bg-blue-100 text-blue-900 rounded-bl-md border border-blue-200"
-                  : "bg-yellow-50 text-yellow-950 rounded-bl-md border border-yellow-100"
+                  ? "bg-clay-100 text-clay-700 rounded-bl-md border border-clay-600/15"
+                  : "bg-paper-50 text-paper-950 rounded-bl-md border border-paper-100"
               }`}
             >
               {msg.role === "store" && (
-                <span className="text-xs font-medium text-blue-600 block mb-1">🏪 Tienda</span>
+                <span className="text-xs font-medium text-clay-700 block mb-1">🏪 Tienda</span>
               )}
               {msg.image_url && (
                 <img
@@ -86,7 +86,7 @@ export function ChatThread({ storeId, phone }: { storeId: string; phone: string 
               {msg.content && (
                 <span className="whitespace-pre-wrap break-words">{msg.content}</span>
               )}
-              <span className="block text-xs text-yellow-700/30 mt-1">
+              <span className="block text-xs text-paper-700/30 mt-1">
                 {new Date(msg.created_at).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -104,20 +104,20 @@ export function ChatThread({ storeId, phone }: { storeId: string; phone: string 
           e.preventDefault();
           handleSend();
         }}
-        className="border-t border-yellow-100 p-3 flex gap-2"
+        className="border-t border-paper-100 p-3 flex gap-2"
       >
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Escribí un mensaje..."
-          className="flex-1 px-3 py-2 text-sm border border-yellow-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-yellow-400"
+          className="flex-1 px-3 py-2 text-sm border border-paper-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-paper-200 focus:border-signal-400"
           disabled={sending}
         />
         <button
           type="submit"
           disabled={sending || !input.trim()}
-          className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-lg hover:bg-yellow-500 disabled:opacity-50 transition-colors"
+          className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-lg hover:bg-signal-500 disabled:opacity-50 transition-colors"
         >
           {sending ? "..." : "Enviar"}
         </button>

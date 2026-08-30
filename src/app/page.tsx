@@ -23,25 +23,26 @@ export default function Home() {
   const tierInfo = TIER_LABELS[user?.tier ?? "free"] ?? TIER_LABELS.free;
   const limitReached = tierInfo.limit !== null && stores.length >= tierInfo.limit;
 
+  const tierBadgeStyle =
+    user?.tier === "enterprise" ? "bg-paper-950 text-paper-50" :
+    user?.tier === "pro" ? "bg-signal-50 text-signal-700" :
+    "bg-paper-100 text-paper-700";
+
   return (
     <main className="flex-1 p-8">
       <div className="max-w-3xl mx-auto">
         <header className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-yellow-950">OrderFlow</h1>
-            <p className="text-yellow-700/70 mt-1">Selecciona una tienda para gestionar pedidos</p>
+            <h1 className="font-display text-3xl font-semibold tracking-tight text-paper-950">OrderFlow</h1>
+            <p className="text-paper-700/70 mt-1">Elegí una tienda para gestionar sus pedidos</p>
           </div>
           <div className="flex items-center gap-3">
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-              user?.tier === "enterprise" ? "bg-purple-100 text-purple-800" :
-              user?.tier === "pro" ? "bg-blue-100 text-blue-800" :
-              "bg-gray-100 text-gray-800"
-            }`}>
+            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${tierBadgeStyle}`}>
               {tierInfo.label}
             </span>
             <button
               onClick={logout}
-              className="text-sm text-yellow-700/60 hover:text-yellow-950"
+              className="text-sm text-paper-700/60 hover:text-paper-950"
             >
               Salir
             </button>
@@ -49,36 +50,37 @@ export default function Home() {
         </header>
 
         <div className="mb-6 flex items-center justify-between">
-          <p className="text-sm text-yellow-700/60">
-            {stores.length} de {tierInfo.limit ?? "∞"} tiendas
+          <p className="text-sm font-mono text-paper-700/60">
+            {stores.length} / {tierInfo.limit ?? "∞"} tiendas
           </p>
           {limitReached && (
-            <p className="text-sm text-orange-600 font-medium" style={{color: "#FFBF00 "}}>
-              Actualiza tu plan para administrar mas tiendas!
+            <p className="text-sm text-clay-600 font-medium">
+              Actualizá tu plan para administrar más tiendas
             </p>
           )}
         </div>
 
         {stores.length === 0 ? (
-          <div className="bg-white rounded-xl border border-yellow-200 p-8 text-center shadow-sm">
-            <p className="text-yellow-700/60">No hay tiendas creadas</p>
-            <p className="text-sm text-yellow-700/60 mt-1">Usa POST /api/stores para crear una</p>
+          <div className="bg-white rounded-xl border border-paper-200 p-8 text-center shadow-sm">
+            <p className="text-paper-700/60">No hay tiendas creadas todavía</p>
+            <p className="text-sm text-paper-700/60 mt-1">Usá POST /api/stores para crear la primera</p>
           </div>
         ) : (
-          <div className="grid gap-3">
+          <div className="rounded-xl border border-paper-200 bg-white shadow-sm divide-y divide-paper-100 overflow-hidden">
             {stores.map((store) => (
               <Link
                 key={store.id}
                 href={`/stores/${store.slug}/orders`}
-                className="bg-white border border-yellow-200 rounded-xl p-5 hover:border-yellow-400 hover:shadow-md transition-all"
+                className="flex items-center gap-4 px-5 py-4 hover:bg-paper-50 transition-colors group"
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-lg text-yellow-950">{store.name}</div>
-                    <div className="text-sm text-yellow-700/60">{store.phone}</div>
-                  </div>
-                  <span className="text-yellow-400 text-xl">→</span>
+                <span className="flex items-center justify-center w-11 h-11 rounded-full bg-signal-50 text-signal-700 font-display font-semibold text-lg shrink-0">
+                  {store.name.trim().charAt(0).toUpperCase() || "?"}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="font-medium text-paper-950 truncate">{store.name}</div>
+                  <div className="text-sm font-mono text-paper-700/60 truncate">{store.phone}</div>
                 </div>
+                <span className="text-paper-300 group-hover:text-signal-400 transition-colors" aria-hidden="true">→</span>
               </Link>
             ))}
           </div>

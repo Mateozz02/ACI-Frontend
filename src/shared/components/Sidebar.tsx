@@ -87,18 +87,23 @@ export function Sidebar({ slug, storeName }: SidebarProps) {
     router.push("/login");
   };
 
+  const initial = storeName.trim().charAt(0).toUpperCase() || "?";
+
   return (
     <>
       {/* Mobile header */}
-      <div className="md:hidden flex items-center justify-between px-4 py-3 bg-white border-b border-yellow-200 sticky top-0 z-20">
-        <Link href="/" className="font-semibold text-yellow-950 truncate">
+      <div className="md:hidden flex items-center justify-between px-4 py-3 bg-paper-950 border-b border-paper-800 sticky top-0 z-20">
+        <Link href="/" className="flex items-center gap-2 font-display font-semibold text-paper-50 truncate">
+          <span className="flex items-center justify-center w-7 h-7 rounded-full bg-signal-400 text-paper-950 text-xs font-bold shrink-0">
+            {initial}
+          </span>
           {storeName}
         </Link>
         <button
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-controls="store-sidebar"
-          className="p-2 rounded-lg text-yellow-800 hover:bg-yellow-100 transition-colors"
+          className="p-2 rounded-lg text-paper-100 hover:bg-paper-800 transition-colors"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
         >
           {open ? (
@@ -121,20 +126,23 @@ export function Sidebar({ slug, storeName }: SidebarProps) {
         id="store-sidebar"
         className={`${
           open ? "block" : "hidden"
-        } md:block flex-col w-full md:w-64 bg-white md:bg-transparent border-b md:border-b-0 md:border-r border-yellow-200 shrink-0`}
+        } md:block flex-col w-full md:w-64 bg-paper-950 border-b md:border-b-0 md:border-r border-paper-800 shrink-0`}
       >
         <div className="p-4 md:p-6">
-          <Link href="/" className="flex items-center gap-2 text-yellow-950 mb-6 md:mb-8">
-            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-yellow-400 text-yellow-950 font-bold text-sm">
+          <Link href="/" className="flex items-center gap-2 text-paper-50 mb-6 md:mb-8">
+            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-signal-400 text-paper-950 font-bold text-sm">
               OF
             </span>
-            <span className="font-semibold tracking-tight">OrderFlow</span>
+            <span className="font-display font-semibold tracking-tight">OrderFlow</span>
           </Link>
 
-          <div className="mb-6">
-            <p className="text-xs font-medium text-yellow-800/70 uppercase tracking-wide mb-2">Tienda</p>
-            <div className="px-3 py-2 rounded-lg bg-yellow-50 border border-yellow-100">
-              <span className="font-medium text-yellow-950 truncate block">{storeName}</span>
+          <div className="mb-6 flex items-center gap-3 px-3 py-2.5 rounded-lg bg-paper-800/60">
+            <span className="flex items-center justify-center w-9 h-9 rounded-full bg-signal-400 text-paper-950 font-display font-semibold text-sm shrink-0">
+              {initial}
+            </span>
+            <div className="min-w-0">
+              <p className="text-[10px] font-medium text-paper-300 uppercase tracking-wide">Tienda</p>
+              <p className="font-medium text-paper-50 truncate leading-tight">{storeName}</p>
             </div>
           </div>
 
@@ -147,14 +155,17 @@ export function Sidebar({ slug, storeName }: SidebarProps) {
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      className={`relative flex items-center gap-3 pl-3 pr-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                         active
-                          ? "bg-yellow-100 text-yellow-950"
-                          : "text-yellow-800/80 hover:bg-yellow-50 hover:text-yellow-950"
+                          ? "bg-signal-400/15 text-paper-50"
+                          : "text-paper-300 hover:bg-paper-800/60 hover:text-paper-50"
                       }`}
                       aria-current={active ? "page" : undefined}
                     >
-                      <span className={active ? "text-yellow-700" : "text-yellow-600/70"}>{item.icon}</span>
+                      {active && (
+                        <span className="absolute left-0 top-1.5 bottom-1.5 w-0.5 rounded-full bg-signal-400" aria-hidden="true" />
+                      )}
+                      <span className={active ? "text-signal-400" : "text-paper-500"}>{item.icon}</span>
                       {item.label}
                     </Link>
                   </li>
@@ -163,19 +174,19 @@ export function Sidebar({ slug, storeName }: SidebarProps) {
             </ul>
           </nav>
 
-          <div className="mt-6 pt-6 border-t border-yellow-100">
+          <div className="mt-6 pt-6 border-t border-paper-800">
             <Link
               href="/"
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-yellow-800/80 hover:bg-yellow-50 hover:text-yellow-950 transition-colors"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-paper-300 hover:bg-paper-800/60 hover:text-paper-50 transition-colors"
             >
-              <span className="text-yellow-600/70">{icons.stores}</span>
+              <span className="text-paper-500">{icons.stores}</span>
               Todas las tiendas
             </Link>
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-red-600/80 hover:bg-red-50 hover:text-red-700 transition-colors mt-1"
+              className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-red-400/90 hover:bg-red-950/40 hover:text-red-300 transition-colors mt-1"
             >
-              <span className="text-red-500/70">{icons.logout}</span>
+              <span className="text-red-400/70">{icons.logout}</span>
               Cerrar sesión
             </button>
           </div>

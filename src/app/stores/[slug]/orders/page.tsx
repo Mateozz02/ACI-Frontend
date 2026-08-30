@@ -14,13 +14,13 @@ export default function OrdersPage() {
   }, [params.slug]);
 
   if (!storeId) return (
-    <div className="max-w-5xl mx-auto text-gray-400">Cargando...</div>
+    <div className="max-w-5xl mx-auto text-paper-600/70">Cargando...</div>
   );
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-2xl font-bold tracking-tight mb-6">Pedidos</h1>
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <h1 className="font-display text-2xl font-semibold tracking-tight mb-6">Pedidos</h1>
+      <div className="bg-white rounded-xl border border-paper-200 overflow-hidden">
         <OrderList storeId={storeId} slug={params.slug} />
       </div>
     </div>

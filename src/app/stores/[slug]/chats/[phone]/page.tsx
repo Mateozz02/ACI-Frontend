@@ -16,7 +16,7 @@ export default function ChatPage() {
 
   if (!storeId) {
     return (
-      <div className="flex items-center justify-center h-full text-yellow-700/60">
+      <div className="flex items-center justify-center h-full text-paper-700/60">
         Cargando...
       </div>
     );

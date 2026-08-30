@@ -31,11 +31,11 @@ export function QRCodeDisplay({ qrCode, onRefresh }: Props) {
     <div className="text-center">
       <img src={qrCode} alt="QR Code" className="mx-auto w-48 h-48" />
       {expired ? (
-        <button onClick={onRefresh} className="mt-3 px-4 py-2 text-sm bg-yellow-400 rounded-lg">
+        <button onClick={onRefresh} className="mt-3 px-4 py-2 text-sm bg-signal-400 rounded-lg">
           Actualizar QR
         </button>
       ) : (
-        <p className="text-sm text-yellow-700/60 mt-2">Expira en {countdown}s</p>
+        <p className="text-sm text-paper-700/60 mt-2">Expira en {countdown}s</p>
       )}
     </div>
   );

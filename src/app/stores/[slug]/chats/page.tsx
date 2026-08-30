@@ -1,7 +1,7 @@
 export default function ChatsIndexPage() {
   return (
     <div className="flex items-center justify-center h-full">
-      <div className="text-center text-yellow-700/60">
+      <div className="text-center text-paper-700/60">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="48"

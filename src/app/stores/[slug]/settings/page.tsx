@@ -19,33 +19,33 @@ export default function SettingsPage() {
   }, [params.slug]);
 
   if (!store) return (
-    <div className="max-w-2xl mx-auto text-gray-400">Cargando...</div>
+    <div className="max-w-2xl mx-auto text-paper-600/70">Cargando...</div>
   );
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold tracking-tight mb-6">Configuración</h1>
+      <h1 className="font-display text-2xl font-semibold tracking-tight mb-6">Configuración</h1>
 
-      <div className="flex gap-1 mb-4 border-b border-yellow-200">
+      <div className="flex gap-1 mb-4 border-b border-paper-200">
         <button onClick={() => setTab("general")}
           className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
             tab === "general"
-              ? "bg-white border border-b-white -mb-px text-yellow-950"
-              : "text-yellow-700/60 hover:text-yellow-950"
+              ? "bg-white border border-b-white -mb-px text-paper-950"
+              : "text-paper-700/60 hover:text-paper-950"
           }`}>
           General
         </button>
         <button onClick={() => setTab("whatsapp")}
           className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
             tab === "whatsapp"
-              ? "bg-white border border-b-white -mb-px text-yellow-950"
-              : "text-yellow-700/60 hover:text-yellow-950"
+              ? "bg-white border border-b-white -mb-px text-paper-950"
+              : "text-paper-700/60 hover:text-paper-950"
           }`}>
           WhatsApp
         </button>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl border border-paper-200 overflow-hidden">
         {tab === "general" ? (
           <StoreSettingsForm store={store} onSaved={() => getStoreBySlug(params.slug).then(setStore)} />
         ) : (

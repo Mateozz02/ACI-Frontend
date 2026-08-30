@@ -42,8 +42,8 @@ export function StoreSettingsForm({ store, onSaved }: Props) {
     }
   }
 
-  const inputClass = "mt-1 w-full px-3 py-1.5 text-sm border border-yellow-200 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:border-yellow-400 bg-white";
-  const labelClass = "text-xs font-medium text-yellow-800/70";
+  const inputClass = "mt-1 w-full px-3 py-1.5 text-sm border border-paper-200 rounded-md focus:outline-none focus:ring-2 focus:ring-paper-200 focus:border-signal-400 bg-white";
+  const labelClass = "text-xs font-medium text-paper-800/70";
 
   return (
     <form onSubmit={handleSubmit} className="p-5 space-y-5">
@@ -90,13 +90,13 @@ export function StoreSettingsForm({ store, onSaved }: Props) {
 
       <label className="flex items-center gap-2">
         <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)}
-          className="rounded border-yellow-300 text-yellow-500 focus:ring-yellow-400" />
-        <span className="text-sm text-yellow-800">Tienda activa</span>
+          className="rounded border-paper-300 text-signal-500 focus:ring-signal-400" />
+        <span className="text-sm text-paper-800">Tienda activa</span>
       </label>
 
       <div className="flex justify-end pt-2">
         <button type="submit" disabled={saving}
-          className="px-4 py-2 text-sm font-medium text-yellow-950 bg-yellow-400 rounded-md hover:bg-yellow-500 disabled:opacity-50">
+          className="px-4 py-2 text-sm font-medium text-paper-950 bg-signal-400 rounded-md hover:bg-signal-500 disabled:opacity-50">
           {saving ? "Guardando..." : "Guardar cambios"}
         </button>
       </div>
