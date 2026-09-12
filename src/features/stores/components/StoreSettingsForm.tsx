@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type SyntheticEvent } from "react";
+import { toast } from "sonner";
 import type { Store } from "../types";
 import { updateStore } from "../api";
 
@@ -18,6 +19,7 @@ export function StoreSettingsForm({ store, onSaved }: Props) {
   const [payment, setPayment] = useState(store.payment_instructions ?? "");
   const [cancellation, setCancellation] = useState(store.cancellation_policy ?? "");
   const [isActive, setIsActive] = useState(store.is_active);
+  const [isChatbotEnabled, setIsChatbotEnabled] = useState(store.chatbot_enabled);
   const [saving, setSaving] = useState(false);
 
   async function handleSubmit(e: SyntheticEvent<HTMLFormElement>) {
@@ -35,8 +37,12 @@ export function StoreSettingsForm({ store, onSaved }: Props) {
         payment_instructions: payment.trim() || null,
         cancellation_policy: cancellation.trim() || null,
         is_active: isActive,
+        chatbot_enabled: isChatbotEnabled
       });
+      toast.success("Cambios guardados");
       onSaved();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Error al guardar");
     } finally {
       setSaving(false);
     }
@@ -92,6 +98,11 @@ export function StoreSettingsForm({ store, onSaved }: Props) {
         <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)}
           className="rounded border-paper-300 text-signal-500 focus:ring-signal-400" />
         <span className="text-sm text-paper-800">Tienda activa</span>
+      </label>
+      <label className="flex items-center gap-2">
+        <input type="checkbox" checked={isChatbotEnabled} onChange={(e) => setIsChatbotEnabled(e.target.checked)}
+          className="rounded border-paper-300 text-signal-500 focus:ring-signal-400" />
+        <span className="text-sm text-paper-800">Chatbot Activo</span>
       </label>
 
       <div className="flex justify-end pt-2">

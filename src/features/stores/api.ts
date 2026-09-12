@@ -30,6 +30,9 @@ export async function updateStore(id: string, data: Partial<Store>): Promise<Sto
     body: JSON.stringify(data),
   });
 
-  if (!res.ok) throw new Error("Failed to update store");
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.detail ?? "Failed to update store");
+  }
   return res.json();
 }
